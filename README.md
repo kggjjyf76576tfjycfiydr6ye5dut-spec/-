@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>متجر الإخوة | الطبالي والبلتات - جميع المقاسات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #fef9f0;
+            color: #2c1a12;
+            line-height: 1.6;
+        }
+        :root {
+            --wood-dark: #5a3a2b;
+            --wood-medium: #8b5a2b;
+            --wood-light: #c79a6e;
+            --gold: #d4af37;
+            --cream: #faf3e0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+        }
+        .navbar {
+            background: linear-gradient(135deg, #3e2a21, #2c1a12);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        .logo p {
+            font-size: 0.8rem;
+            color: var(--gold);
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.4rem;
+        }
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -12px;
+            background: var(--gold);
+            color: #2c1a12;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .hero {
+            background: linear-gradient(rgba(44, 26, 18, 0.8), rgba(44, 26, 18, 0.7)), url('https://images.pexels.com/photos/658045/pexels-photo-658045.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+        }
+        .btn {
+            background-color: var(--gold);
+            color: #2c1a12;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .management {
+            background: var(--cream);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
+        }
+        .managers {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .manager-card {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            border-right: 5px solid var(--gold);
+            text-align: center;
+        }
+        .products-section {
+            padding: 3rem 2rem;
+            max-width: 1300px;
+            margin: auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--wood-dark);
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+            margin: 0.5rem auto;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: 0.25s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
+        }
+        .product-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        .product-info {
+            padding: 1.2rem;
+        }
+        .product-info h3 {
+            font-size: 1.3rem;
+        }
+        .product-price {
+            font-weight: bold;
+            color: var(--wood-medium);
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .quantity-control button {
+            background: var(--wood-light);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .quantity-control span {
+            font-weight: bold;
+            font-size: 1.1rem;
+            min-width: 30px;
+            text-align: center;
+        }
+        .add-to-cart {
+            background: var(--wood-dark);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+        /* السلة الجانبية */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            left: -400px;
+            width: 380px;
+            height: 100%;
+            background: white;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: 0.3s;
+            padding: 1.5rem;
+            overflow-y: auto;
+            direction: rtl;
+        }
+        .cart-sidebar.open {
+            left: 0;
+        }
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 0.5rem;
+        }
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .cart-items {
+            margin: 1rem 0;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            padding: 0.8rem 0;
+        }
+        .cart-total {
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin: 1rem 0;
+        }
+        .checkout-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 40px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .contact-methods {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .social-btn {
+            background: #1f140e;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            width: 45px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        footer {
+            background: #1f140e;
+            color: #e7d9cf;
+            text-align: center;
+            padding: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .cart-sidebar { width: 100%; left: -100%; }
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo">
+        <h1><i class="fas fa-tree"></i> شركة الإخوة</h1>
+        <p>طبالي جديد - قديم | جميع المقاسات</p>
+    </div>
+    <div class="nav-links">
+        <a href="#">الرئيسية</a>
+        <a href="#products">المنتجات</a>
+        <div class="cart-icon" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
+    </div>
+</div>
+
+<div class="hero">
+    <h2>متجر الطبالي والبلتات</h2>
+    <p>أختر المنتج، حدد الكمية، وأرسل طلبك عبر واتساب أو فيسبوك أو تليجرام</p>
+    <a href="#products" class="btn">تسوق الآن <i class="fas fa-arrow-left"></i></a>
+</div>
+
+<div class="management">
+    <h3><i class="fas fa-users"></i> إدارة الشركة</h3>
+    <div class="managers">
+        <div class="manager-card"><i class="fas fa-user-tie"></i> وليد عبدالسميع <br> <small>المدير العام</small><br><span dir="ltr">01112091752</span></div>
+        <div class="manager-card"><i class="fas fa-user-check"></i> عبدالحليم علي <br> <small>مدير العمليات</small><br><span dir="ltr">01010536166</span></div>
+    </div>
+    <p>للاستفسار المباشر: <strong dir="ltr">01100257625</strong> (استقبال الطلبات)</p>
+</div>
+
+<div class="products-section" id="products">
+    <div class="section-title">منتجاتنا</div>
+    <div class="products-grid" id="productsGrid"></div>
+</div>
+
+<footer>
+    <p>© 2025 متجر شركة الإخوة – جميع المقاسات جديدة ومستعملة</p>
+    <div class="contact-methods">
+        <a href="https://wa.me/201100257625" target="_blank" class="social-btn" style="background:#25D366;"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=1000123456789" target="_blank" class="social-btn" style="background:#1877F2;"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://t.me/01100257625" target="_blank" class="social-btn" style="background:#0088cc;"><i class="fab fa-telegram"></i></a>
+    </div>
+</footer>
+
+<!-- السلة الجانبية -->
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3><i class="fas fa-shopping-bag"></i> سلة الطلبات</h3>
+        <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="cartItemsList" class="cart-items"></div>
+    <div class="cart-total" id="cartTotal">الإجمالي: 0 جنيه</div>
+    <button class="checkout-btn" onclick="sendOrderViaWhatsApp()"><i class="fab fa-whatsapp"></i> إرسال الطلب واتساب</button>
+    <button class="checkout-btn" style="background:#4267B2;" onclick="sendOrderViaFacebook()"><i class="fab fa-facebook-messenger"></i> إرسال عبر فيسبوك</button>
+    <button class="checkout-btn" style="background:#0088cc;" onclick="sendOrderViaTelegram()"><i class="fab fa-telegram"></i> إرسال عبر تليجرام</button>
+    <p style="font-size:0.8rem; text-align:center; margin-top:10px;">الطلب سيُرسل إلى إدارة الشركة مع بياناتك</p>
+</div>
+
+<script>
+    // المنتجات (img1.jpg إلى img10.jpg)
+    const products = [
+        { id: 1, name: "طبالي يورو جديد (1200x800)", price: 245, img: "img1.jpg", badge: "جديد - يورو" },
+        { id: 2, name: "طبالي أمريكي جديد (1200x1000)", price: 350, img: "img2.jpg", badge: "جديد - أمريكي" },
+        { id: 3, name: "طبالي قديم (مستعمل بحالة جيدة)", price: 95, img: "img3.jpg", badge: "قديم - اقتصادي" },
+        { id: 4, name: "طبالي مقاس 1100x1100 (جديد)", price: 390, img: "img4.jpg", badge: "مقاس خاص" },
+        { id: 5, name: "بلتات خفيفة قديمة", price: 60, img: "img5.jpg", badge: "مستعمل - رخيص" },
+        { id: 6, name: "طبالي زان جديد (حسب الطلب)", price: 0, img: "img6.jpg", badge: "جديد - فاخر", customPrice: true },
+        { id: 7, name: "طبالي ألماني معالج (جديد)", price: 320, img: "img7.jpg", badge: "جديد - تصديري" },
+        { id: 8, name: "طبالي قديم مقاس 1000x1200", price: 110, img: "img8.jpg", badge: "قديم - جيد" },
+        { id: 9, name: "طبالي خفيف للشحن (جديد)", price: 170, img: "img9.jpg", badge: "جديد - خفيف" },
+        { id: 10, name: "طبالي معاد تدويره (هجين)", price: 140, img: "img10.jpg", badge: "هجين" },
+        { id: 11, name: "طبالي صناعي مقاس 1300x1100", price: 480, img: "img1.jpg", badge: "مقاس ضخم" },
+        { id: 12, name: "طبالي قديم متنوع (أي مقاس)", price: 80, img: "img2.jpg", badge: "كل المقاسات قديم" }
+    ];
+
+    let cart = [];
+
+    function renderProducts() {
+        const grid = document.getElementById('productsGrid');
+        grid.innerHTML = '';
+        products.forEach(p => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <div class="product-img" style="background-image: url('${p.img}'); background-size:cover; background-position:center;"></div>
+                <div class="product-info">
+                    <span style="background:#ecb17640; padding:2px 8px; border-radius:20px; font-size:0.7rem;">${p.badge}</span>
+                    <h3>${p.name}</h3>
+                    <div class="product-price">${p.price === 0 ? 'حسب المقاس' : p.price + ' جنيه'}</div>
+                    <div class="quantity-control">
+                        <button onclick="changeQty(${p.id}, -1)">-</button>
+                        <span id="qty-${p.id}">0</span>
+                        <button onclick="changeQty(${p.id}, 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(${p.id})">➕ أضف إلى السلة</button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function changeQty(productId, delta) {
+        const item = cart.find(i => i.id === productId);
+        if (item) {
+            const newQty = item.quantity + delta;
+            if (newQty <= 0) {
+                cart = cart.filter(i => i.id !== productId);
+            } else {
+                item.quantity = newQty;
+            }
+        } else if (delta > 0) {
+            const product = products.find(p => p.id === productId);
+            if (product) cart.push({ ...product, quantity: 1 });
+        }
+        updateCartUI();
+    }
+
+    function addToCart(productId) {
+        const product = products.find(p => p.id === productId);
+        const existing = cart.find(i => i.id === productId);
+        if (existing) {
+            existing.quantity++;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
+        updateCartUI();
+        // تحديث العداد
+        document.getElementById(`qty-${productId}`).innerText = existing ? existing.quantity : 1;
+        toggleCart(); // فتح السلة تلقائياً
+    }
+
+    function updateCartUI() {
+        const cartCount = cart.reduce((sum, i) => sum + i.quantity, 0);
+        document.getElementById('cartCount').innerText = cartCount;
+        const container = document.getElementById('cartItemsList');
+        if (cart.length === 0) {
+            container.innerHTML = '<p style="text-align:center;">السلة فارغة</p>';
+            document.getElementById('cartTotal').innerHTML = 'الإجمالي: 0 جنيه';
+            return;
+        }
+        let total = 0;
+        container.innerHTML = '';
+        cart.forEach(item => {
+            const itemTotal = (item.price === 0 ? 0 : item.price) * item.quantity;
+            total += itemTotal;
+            const div = document.createElement('div');
+            div.className = 'cart-item';
+            div.innerHTML = `
+                <div><strong>${item.name}</strong><br>الكمية: ${item.quantity}</div>
+                <div>${item.price === 0 ? 'سعر حسب الطلب' : (item.price * item.quantity) + ' جنيه'}</div>
+                <button onclick="removeFromCart(${item.id})" style="background:red; color:white; border:none; border-radius:50%; width:25px; cursor:pointer;">✕</button>
+            `;
+            container.appendChild(div);
+        });
+        document.getElementById('cartTotal').innerHTML = `الإجمالي: ${total} جنيه ${total === 0 ? '(يتم تحديد سعر الطبالي حسب الطلب)' : ''}`;
+        // تحديث عداد كل منتج في الواجهة
+        products.forEach(p => {
+            const item = cart.find(i => i.id === p.id);
+            const qtySpan = document.getElementById(`qty-${p.id}`);
+            if (qtySpan) qtySpan.innerText = item ? item.quantity : 0;
+        });
+    }
+
+    function removeFromCart(id) {
+        cart = cart.filter(i => i.id !== id);
+        updateCartUI();
+    }
+
+    function toggleCart() {
+        const sidebar = document.getElementById('cartSidebar');
+        const overlay = document.getElementById('overlay');
+        sidebar.classList.toggle('open');
+        overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+    }
+
+    // إعداد رسالة الطلب المرسلة
+    function getOrderMessage() {
+        if (cart.length === 0) return null;
+        let message = "📦 *طلب جديد من متجر شركة الإخوة* 📦\n\n";
+        cart.forEach(item => {
+            const priceText = item.price === 0 ? "سعر حسب الطلب" : `${item.price} ج`;
+            message += `🪵 *${item.name}*\n   الكمية: ${item.quantity} | السعر: ${priceText}\n`;
+        });
+        const total = cart.reduce((sum, i) => sum + ((i.price === 0 ? 0 : i.price) * i.quantity), 0);
+        message += `\n💰 *الإجمالي:* ${total === 0 ? 'سيتم تحديده' : total + ' جنيه'}\n`;
+        message += `\n👤 *بيانات العميل:* (يرجى الرد بهذا الرقم) رقم الهاتف: [يرجى إرسال رقمك]`;
+        return encodeURIComponent(message);
+    }
+
+    function sendOrderViaWhatsApp() {
+        const msg = getOrderMessage();
+        if (!msg) { alert("السلة فارغة، أضف منتجات أولاً"); return; }
+        const phone = "201100257625"; // رقم الطلبات
+        window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+        toggleCart();
+    }
+
+    function sendOrderViaFacebook() {
+        const msg = getOrderMessage();
+        if (!msg) { alert("السلة فارغة"); return; }
+        // رابط فيسبوك ماسنجر (يحتاج إلى معرف الصفحة أو حساب الشركة، نوجه إلى صفحة افتراضية)
+        const fbLink = `https://www.facebook.com/messages/t/1000123456789?text=${msg}`;
+        window.open(fbLink, '_blank');
+        toggleCart();
+    }
+
+    function sendOrderViaTelegram() {
+        const msg = getOrderMessage();
+        if (!msg) { alert("السلة فارغة"); return; }
+        const telegramUsername = "brotherswood"; // يمكن تغييره
+        window.open(`https://t.me/${telegramUsername}?text=${msg}`, '_blank');
+        toggleCart();
+    }
+
+    renderProducts();
+    updateCartUI();
+
+    // إغلاق السلة عند الضغط خارجها
+    window.onclick = function(event) {
+        const sidebar = document.getElementById('cartSidebar');
+        if (event.target === document.getElementById('overlay')) toggleCart();
+    }
+</script>
+</body>
+</html>
